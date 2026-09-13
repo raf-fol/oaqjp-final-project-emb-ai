@@ -34,7 +34,7 @@ def emotion_detector(text_to_analyze):
     response_text = response.text
 
     # Convert text string attribute of requests response into a json dictionary format  
-    response_json = json.load(response_text)
+    #response_json = json.load(response_text)
 
     # Return text attribute of  reqonse from the function
     return response_text
