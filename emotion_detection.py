@@ -1,7 +1,21 @@
+"""emotion_detection python program
+
+Functions:
+emotion_detector()
+"""
+
 # Import the requests library to handle HTTP requests
 import requests, json
 
-def emotion_detector(text_to_analyse):
+def emotion_detector(text_to_analyze):
+    """Emotion detector function 
+
+    Args:
+    text_to_analyze(strings)
+    
+    Returns:
+    response_text(string)
+    """
 
     # URL to  the emotion detection Watson API
     url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
@@ -11,7 +25,7 @@ def emotion_detector(text_to_analyse):
 
     # Create a dictionary with the text to be analyzed which has label "raw_document" pointing to a dictionary labelled  text"
     # the nested direct point to the text to ne analyised by the emotion detector.
-    input_json = { "raw_document": { "text": text_to_analyse } }
+    input_json = { "raw_document": { "text": text_to_analyze } }
 
     # Send a POST request to the API with the text and headers
     response = requests.post(url, json = input_json, headers=header)
@@ -19,5 +33,8 @@ def emotion_detector(text_to_analyse):
     # Return the response text only  part of the response  from the API
     response_text = response.text
 
-    # Return the new diction call emotion_response from the function
+    # Convert text string attribute of requests response into a json dictionary format  
+    response_json = json.load(response_text)
+
+    # Return text attribute of  reqonse from the function
     return response_text
