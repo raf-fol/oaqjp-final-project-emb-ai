@@ -10,6 +10,7 @@ import requests, json
 def emotion_detector(text_to_analyze):
     """Emotion detector function 
 
+
     Args:
     text_to_analyze(strings)
     
@@ -39,4 +40,15 @@ def emotion_detector(text_to_analyze):
     # Extract emotion dictionary
 
     # Return text attribute of response converted to dictionary
-    return response_json['emotionPredictions'][0]['emotion']
+
+    response_emotions = response_json['emotionPredictions'][0]['emotion']
+
+    response_emotions_max_value = max(response_emotions.values())
+
+    response_emotions_max_report = response_emotions
+
+    for emotion in response_emotions:
+        if response_emotions[emotion] ==  response_emotions_max_value:
+            response_emotions_max_report.update({'dominant_emotion':emotion})
+            break
+    return response_emotions_max_report
