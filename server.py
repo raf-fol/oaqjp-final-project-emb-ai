@@ -1,7 +1,20 @@
 # Use the following command  to test use the followingh curl command
 #   "curl -X GET -i http://localhost:5000/emotionDetector?textToAnalyze=I%20love%20stuff"
-"""Output URL request response
+"""Flask server that call package EmotionDetection to 
+   analysis emotional sentment of an imput sting.
+   Calls: EmotionDetection package
+   Loads: emotion_detection python library
+   Runs : emotion_detector(<string>) defined function 
+   Output : Emotions attributed weighte by a give number
 
+   Emotion analysed are:
+   Anger, 
+   Disgust, 
+   Fear, 
+   Joy, 
+   Sadness
+   
+   Dominant emotion also indicated.
 """
 from flask import Flask, render_template, request
 
