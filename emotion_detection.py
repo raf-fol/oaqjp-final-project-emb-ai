@@ -51,4 +51,9 @@ def emotion_detector(text_to_analyze):
         if response_emotions[emotion] ==  response_emotions_max_value:
             response_emotions_max_report.update({'dominant_emotion':emotion})
             break
+
+        if response.status_code == 400:
+            for emotion in response_emotions_max_report:
+                response_emotions_max_report[emotion] = None
+
     return response_emotions_max_report

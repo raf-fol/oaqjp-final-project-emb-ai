@@ -31,8 +31,13 @@ def sent_detector():
     text_to_analyze = request.args.get('textToAnalyze')
 
     # If not text the entered return and report this
-    if text_to_analyze == "":
-        return "No text submitted! Try again."
+
+    
+    #if text_to_analyze == "":
+        
+    #    response = emotion_detector(text_to_analyze)
+        
+    #    return "No text submitted! Try again."    
 
     # Pass text_to_analyzer to sentiment_analyzer then store returned directory in response object.
     response = emotion_detector(text_to_analyze)

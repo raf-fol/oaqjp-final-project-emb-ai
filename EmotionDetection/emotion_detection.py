@@ -31,6 +31,19 @@ def emotion_detector(text_to_analyze):
     # Send a POST request to the API with the text and headers
     response = requests.post(url, json = input_json, headers=header)
     
+    if response.status_code == 400:
+        response_emotions_max_report = {
+        "anger": None, 
+        "disgust": None, 
+        "fear": None, 
+        "joy": None, 
+        "sadness": None, 
+        "dominant_emotion": None
+        }
+        return response_emotions_max_report    
+
+    
+
     # Return the response text only  part of the response  from the API
     response_text = response.text
 
@@ -51,4 +64,6 @@ def emotion_detector(text_to_analyze):
         if response_emotions[emotion] ==  response_emotions_max_value:
             response_emotions_max_report.update({'dominant_emotion':emotion})
             break
+        
+
     return response_emotions_max_report
