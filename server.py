@@ -1,6 +1,5 @@
 # Use the following command  to test use the followingh curl command
 #   "curl -X GET -i http://localhost:5000/emotionDetector?textToAnalyze=I%20love%20stuff"
-
 """Output URL request response
 
 """
@@ -28,16 +27,23 @@ def sent_detector():
     """
 
     # When decorator used get extract text argumment and stored in virable text_to_analyze.
-    text_to_analyze = request.args.get('textToAnalyze')  
+    text_to_analyze = request.args.get('textToAnalyze')
 
     # Pass text_to_analyzer to sentiment_analyzer then store returned directory in response object.
     response = emotion_detector(text_to_analyze)
 
-    if  response['dominant_emotion'] == None:
+    if  response['dominant_emotion'] is None:
         return "Invalid text! Please try again!"
 
     # Return a formatted string with response and dominant_emotion label.
-    result = f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']}, 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."
+    result_string = "For the given statement, the system response is "
+    result_string += " 'anger': {response['anger']},"
+    result_string += " 'disgust': {response['disgust']},"
+    result_string += " 'fear': {response['fear']},"
+    result_string += " 'joy': {response['joy']},"
+    result_string += " 'sadness': {response['sadness']}."
+    result_string += " The dominant emotion is {response['dominant_emotion']}."
+    result = result_string
     return result
 
 # If call the server is to "/" the render the GUI tenplate index.htm;.
