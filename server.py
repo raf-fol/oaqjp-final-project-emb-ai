@@ -28,19 +28,13 @@ def sent_detector():
     """
 
     # When decorator used get extract text argumment and stored in virable text_to_analyze.
-    text_to_analyze = request.args.get('textToAnalyze')
-
-    # If not text the entered return and report this
-
-    
-    #if text_to_analyze == "":
-        
-    #    response = emotion_detector(text_to_analyze)
-        
-    #    return "No text submitted! Try again."    
+    text_to_analyze = request.args.get('textToAnalyze')  
 
     # Pass text_to_analyzer to sentiment_analyzer then store returned directory in response object.
     response = emotion_detector(text_to_analyze)
+
+    if  response['dominant_emotion'] == None:
+        return "Invalid text! Please try again!"
 
     # Return a formatted string with response and dominant_emotion label.
     result = f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']}, 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."

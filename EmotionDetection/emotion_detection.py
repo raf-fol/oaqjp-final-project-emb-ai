@@ -31,6 +31,7 @@ def emotion_detector(text_to_analyze):
     # Send a POST request to the API with the text and headers
     response = requests.post(url, json = input_json, headers=header)
     
+    # Return all directory key value pairs as None if response.status_code == 400
     if response.status_code == 400:
         response_emotions_max_report = {
         "anger": None, 
